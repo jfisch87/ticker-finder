@@ -1,8 +1,11 @@
 import re
 import time
-# get input from terminal for debugging
 
+# test
+
+# get input from terminal for debugging
 print('for company input c; for ticker input t')
+# make sure valid input
 switch_check = True
 while switch_check:
     switch = input('company or ticker').lower()
@@ -18,15 +21,19 @@ while switch_check:
 if switch == 'c':
     find_comp(input('what company? '))
 else:
-    find_tick(input('what ticker?'))
+    find_tick(input('what ticker? '))
 
-
+# starting from a ticker
+# swapping characters
+# fat finger errors -> need to find a way to reference close letters on keyboard
+# double character (aapl v appl)
 def find_tick(ticker):
+    ticker = ticker.lower()
     out = []
     
     # if len = 4, swap middle 2
     if len(ticker) == 4:
-        swap = t[0]+t[2]+t[1]+t[3]
+        swap = ticker[0]+ticker[2]+ticker[1]+ticker[3]
         if check_tick(swap):
             out.append(swap)    
     
@@ -41,10 +48,19 @@ def check_tick (tick):
     # something in finance api, if get that it exists, true
     
 def check_comp_name(company, ticker):
+    company = company.lower()
+    ticker = ticker.lower()
+    out = []
     # len of name
     
     # split name, try first word
-    
+    words = company.split()
+    for word in words:
+        if len(word) <= 4 and word != ticker:
+            if check_tick(word):
+                out.append(word)
+            
+        
     # try initials 
                  
     # check list against known tickers  
